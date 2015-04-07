@@ -110,6 +110,8 @@ class Studioforty9_Gallery_Model_Relations
                 }
             }
         }
+
+        return $changes;
     }
 
     /**
@@ -170,8 +172,13 @@ class Studioforty9_Gallery_Model_Relations
     public function formatNew($existing, $entityIds)
     {
         $data = array();
+
+        if (empty($entityIds)) {
+            return $data;
+        }
+
         foreach ($entityIds as $entityId => $entityFields) {
-            if (array_key_exists($entityId, $existing)) {
+            if (array_key_exists($entityId, $existing) && is_array($entityFields)) {
                 if (array_key_exists('position', $entityFields)) {
                     $data[$entityId]['position'] = $entityFields['position'];
                 } else if (array_key_exists('grid_position', $entityFields)) {
