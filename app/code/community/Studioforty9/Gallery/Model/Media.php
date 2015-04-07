@@ -122,9 +122,11 @@ class Studioforty9_Gallery_Model_Media extends Mage_Core_Model_Abstract
      */
     public function getUrl()
     {
+        return sprintf('gallery/media/%s/', $this->getUrlKey());
+        /* TODO: Add config option to fallback to simple urls
         $url = Mage::getUrl('gallery/index/media', array('url_key' => $this->getUrlKey()));
 
-        return $url;
+        return $url;*/
     }
 
     public function getFileUrl()
