@@ -154,7 +154,9 @@ class Studioforty9_Gallery_Block_Adminhtml_Album_Edit_Tab_Form extends Mage_Admi
             'label'    => $this->_getHelper()->__('URL Key'),
             //'class'    => 'required-entry',
             //'required' => true,
-            'note'     => 'Leave blank to use the album name<br/>(e.g. My test album => my-test-album)'
+            'note'     => $this->_getHelper()->__(
+                'Leave blank to use the album name<br/>(e.g. My test album => my-test-album)'
+            )
         );
     }
 
@@ -203,7 +205,7 @@ class Studioforty9_Gallery_Block_Adminhtml_Album_Edit_Tab_Form extends Mage_Admi
         return array(
             'input'     => 'text',
             'label'     => $this->_getHelper()->__('Position'),
-            'class'     => 'required-entry',
+            'class'     => 'required-entry validate-number',
             'required'  => true,
             'style'     => 'width: 60px;',
             'name'      => 'position'

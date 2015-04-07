@@ -158,7 +158,9 @@ class Studioforty9_Gallery_Block_Adminhtml_Media_Edit_Tab_Form extends Mage_Admi
             'label'    => $this->_getHelper()->__('URL Key'),
             //'class'    => 'required-entry',
             //'required' => true,
-            'note'     => 'Leave blank to use the media name<br/>(e.g. My test media => my-test-media)'
+            'note'     => $this->_getHelper()->__(
+                'Leave blank to use the album name<br/>(e.g. My test album => my-test-album)'
+            )
         );
     }
 
