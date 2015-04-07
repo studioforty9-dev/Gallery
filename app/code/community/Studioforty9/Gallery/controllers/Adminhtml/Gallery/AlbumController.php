@@ -133,6 +133,15 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
             $mediaIds = Mage::helper('adminhtml/js')->decodeGridSerializedInput($postData['media_ids']);
         }
 
+        $deleteThumbnail = false;
+        $missingThumbnail = false;
+        if (array_key_exists('thumbnail', $postData)) {
+            $thumbnail = $postData['thumbnail'];
+            if (array_key_exists('delete', $thumbnail) && (int) $thumbnail['delete'] == 1) {
+                $deleteThumbnail = true;
+            }
+        }
+
         // Unset the useless fields
         $ignored = array(
             'page', 'limit', 'form_key', 'selected_media', 'media_ids', 'thumbnail',
@@ -144,13 +153,22 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
 
         $album->addData($postData);
 
+        if ($deleteThumbnail) {
+            $album->setData('thumbnail', '');
+        }
+
         // Check if we have some image files to upload
-        if (!empty($_FILES)) {
+        if (!empty($_FILES) && !empty($_FILES['thumbnail']['name'])) {
             try {
                 $this->_uploadImages($album, array('thumbnail'));
             } catch (Exception $e) {
                 Mage::logException($e);
                 $this->_getSession()->addError($e->getMessage());
+            }
+        } else {
+            if (!$deleteThumbnail) {
+                $this->_getSession()->addError('The thumbnail file is required.');
+                $missingThumbnail = true;
             }
         }
 
@@ -160,12 +178,15 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
             $this->_getSession()->addSuccess(
                 $this->__('The album content was saved successfully.')
             );
-            return $this->_redirect('*/*/', array('id' => $album->getId()));
         } catch (Exception $e) {
             Mage::logException($e);
             $this->_getSession()->addError($e->getMessage());
             return $this->_redirect('*/*');
         }
+
+        $route = ($deleteThumbnail || $missingThumbnail) ? '*/*/edit' : '*/*/index';
+
+        return $this->_redirect($route, array('id' => $album->getId()));
     }
 
     public function deleteAction()

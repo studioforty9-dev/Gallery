@@ -82,12 +82,20 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
 
     protected function _saveAction($media, $postData)
     {
+        $albumIds = array();
         if (array_key_exists('album_ids', $postData)) {
-            $albumIds = $postData['album_ids'];
+            foreach ($postData['album_ids'] as $albumId) {
+                $albumIds[$albumId] = array();
+            }
         }
 
-        if (empty($albumIds)) {
-            $albumIds = array();
+        $deleteFile = false;
+        $missingFile = false;
+        if (array_key_exists('file', $postData)) {
+            $file = $postData['file'];
+            if (array_key_exists('delete', $file) && (int) $file['delete'] == 1) {
+                $deleteFile = true;
+            }
         }
 
         // Unset the image upload fields
@@ -95,13 +103,22 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
 
         $media->addData($postData);
 
+        if ($deleteFile) {
+            $media->setData('file', '');
+        }
+
         // Check if we have some image files to upload
-        if (!empty($_FILES)) {
+        if (!empty($_FILES) && !empty($_FILES['file']['name'])) {
             try {
                 $this->_uploadImages($media, array('file'));
             } catch (Exception $e) {
                 Mage::logException($e);
                 $this->_getSession()->addError($e->getMessage());
+            }
+        } else {
+            if (!$deleteFile) {
+                $this->_getSession()->addError('The media file is required.');
+                $missingFile = true;
             }
         }
 
@@ -111,12 +128,15 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
             $this->_getSession()->addSuccess(
                 $this->__('The media content was saved successfully.')
             );
-            return $this->_redirect('*/*/', array('id' => $media->getId()));
         } catch (Exception $e) {
             Mage::logException($e);
             $this->_getSession()->addError($e->getMessage());
             return $this->_redirect('*/*');
         }
+
+        $route = ($deleteFile || $missingFile) ? '*/*/edit' : '*/*/index';
+
+        return $this->_redirect($route, array('id' => $media->getId()));
     }
 
     public function sortAction()
