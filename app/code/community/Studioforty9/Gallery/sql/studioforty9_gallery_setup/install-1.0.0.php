@@ -141,8 +141,8 @@ $table = $installer->getConnection()
         'media_id',
         $installer->getTable('studioforty9_gallery/gallery_media'),
         'entity_id',
-        Varien_Db_Ddl_Table::ACTION_CASCADE,
-        Varien_Db_Ddl_Table::ACTION_CASCADE
+        null,
+        null
     )
     ->addForeignKey(
         $installer->getFkName(
@@ -154,8 +154,8 @@ $table = $installer->getConnection()
         'album_id',
         $installer->getTable('studioforty9_gallery/gallery_album'),
         'entity_id',
-        Varien_Db_Ddl_Table::ACTION_CASCADE,
-        Varien_Db_Ddl_Table::ACTION_CASCADE
+        null,
+        null
     )
     ->setComment('Media To Album Linkage Table');
 $installer->getConnection()->createTable($table);
