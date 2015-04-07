@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+-->
+<config>
+    <modules>
+        <Studioforty9_Gallery>
+            <version>1.0.0</version>
+        </Studioforty9_Gallery>
+    </modules>
+    <global>
+        <models>
+            <studioforty9_gallery>
+                <class>Studioforty9_Gallery_Model</class>
+                <resourceModel>studioforty9_gallery_resource</resourceModel>
+            </studioforty9_gallery>
+            <studioforty9_gallery_resource>
+                <class>Studioforty9_Gallery_Model_Resource</class>
+                <entities>
+                    <gallery_album>
+                        <table>studioforty9_gallery_album</table>
+                    </gallery_album>
+                    <gallery_album_store>
+                        <table>studioforty9_gallery_album_store</table>
+                    </gallery_album_store>
+                    <gallery_media>
+                        <table>studioforty9_gallery_media</table>
+                    </gallery_media>
+                    <gallery_media_store>
+                        <table>studioforty9_gallery_media_store</table>
+                    </gallery_media_store>
+                    <gallery_media_album>
+                        <table>studioforty9_gallery_media_album</table>
+                    </gallery_media_album>
+                </entities>
+            </studioforty9_gallery_resource>
+        </models>
+        <blocks>
+            <studioforty9_gallery>
+                <class>Studioforty9_Gallery_Block</class>
+            </studioforty9_gallery>
+            <studioforty9_gallery_adminhtml>
+                <class>Studioforty9_Gallery_Block_Adminhtml</class>
+            </studioforty9_gallery_adminhtml>
+        </blocks>
+        <helpers>
+            <studioforty9_gallery>
+                <class>Studioforty9_Gallery_Helper</class>
+            </studioforty9_gallery>
+        </helpers>
+        <resources>
+            <studioforty9_gallery_setup>
+                <setup>
+                    <module>Studioforty9_Gallery</module>
+                </setup>
+            </studioforty9_gallery_setup>
+        </resources>
+        <rewrite>
+            <album_url>
+                <from><![CDATA[#^/gallery/album/(.*)/#]]></from>
+                <to><![CDATA[gallery/index/album/url_key/$1/]]></to>
+                <complete>1</complete>
+            </album_url>
+            <media_url>
+                <from><![CDATA[#^/gallery/media/(.*)/#]]></from>
+                <to><![CDATA[gallery/index/media/url_key/$1/]]></to>
+                <complete>1</complete>
+            </media_url>
+        </rewrite>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <studioforty9_gallery>
+                    <file>studioforty9_gallery.xml</file>
+                </studioforty9_gallery>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Studioforty9_Gallery>
+                    <files>
+                        <default>Studioforty9_Gallery.csv</default>
+                    </files>
+                </Studioforty9_Gallery>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <studioforty9_gallery>
+                <use>standard</use>
+                <args>
+                    <module>Studioforty9_Gallery</module>
+                    <frontName>gallery</frontName>
+                </args>
+            </studioforty9_gallery>
+        </routers>
+        <layout>
+            <updates>
+                <studioforty9_gallery>
+                    <file>studioforty9_gallery.xml</file>
+                </studioforty9_gallery>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <studioforty9_gallery>
+                    <files>
+                        <default>Studioforty9_Gallery.csv</default>
+                    </files>
+                </studioforty9_gallery>
+            </modules>
+        </translate>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <use>admin</use>
+                <args>
+                    <modules>
+                        <Studioforty9_Gallery after="Mage_Adminhtml">Studioforty9_Gallery_Adminhtml</Studioforty9_Gallery>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <studioforty9_gallery>
+            <default>
+                <breadcrumbs>1</breadcrumbs>
+                <uselink>1</uselink>
+                <link>Gallery</link>
+            </default>
+            <seo>
+                <title>Gallery</title>
+                <keywords></keywords>
+                <description></description>
+            </seo>
+        </studioforty9_gallery>
+    </default>
+
+    <!--
+    PHPUnit Configuration
+    -->
+    <phpunit>
+        <suite>
+            <modules>
+                <Studioforty9_Gallery/>
+            </modules>
+        </suite>
+    </phpunit>
+
+</config>

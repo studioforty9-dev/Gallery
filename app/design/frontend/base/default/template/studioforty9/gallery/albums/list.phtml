@@ -1,0 +1,38 @@
+<?php
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+?>
+<?php /** @var Studioforty9_Gallery_Block_Album_List $this */ ?>
+
+<?php
+$_albums = $this->getAlbums();
+$_albumCount = count($_albums);
+?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Gallery'); ?></h1>
+</div>
+<?php if ($_albumCount > 0): ?>
+<div class="gallery-list albums">
+    <?php /** @var Studioforty9_Gallery_Model_Album $_album */ ?>
+    <?php foreach($_albums as $_album): ?>
+    <a href="<?php echo $_album->getUrl(); ?>" class="gallery-item album">
+        <span class="gallery-item-container album-container">
+            <img class="item-thumbnail" src="<?php echo $_album->getResizedImage(300, 300); ?>" alt="<?php echo $_album->getName(); ?>" />
+            <span class="item-name"><?php echo $_album->getName(); ?></span>
+        </span>
+    </a>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+<div class="albums no-albums"><p><?php echo $this->__('Sorry, there are no albums.'); ?></p></div>
+<?php endif; ?>

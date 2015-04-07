@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+-->
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addJs"><script>studioforty9/gallery/js/lightbox.js</script></action>
+        </reference>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="studioforty9_gallery" ifconfig="studioforty9_gallery/default/uselink">
+                <label helper="studioforty9_gallery/data/getGalleryName"/>
+                <url helper="studioforty9_gallery/data/getGalleryUrl"/>
+                <title helper="studioforty9_gallery/data/getGalleryName"/>
+                <prepare/>
+                <urlParams/>
+                <position>120</position>
+            </action>
+        </reference>
+    </default>
+
+    <studioforty9_gallery_index_index>
+        <update handle="required_gallery_items"/>
+        <reference name="content">
+            <block type="studioforty9_gallery/album_list" name="studioforty9.gallery.albums.list" template="studioforty9/gallery/albums/list.phtml" />
+        </reference>
+    </studioforty9_gallery_index_index>
+
+    <studioforty9_gallery_index_album>
+        <update handle="required_gallery_items"/>
+        <reference name="breadcrumbs">
+            <action method="addCrumb" ifconfig="studioforty9_gallery/default/breadcrumbs">
+                <crumbName>gallery</crumbName>
+                <crumbInfo>
+                    <label>Gallery</label>
+                    <title>Gallery</title>
+                    <link>/gallery</link>
+                </crumbInfo>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="studioforty9_gallery/album_view" name="studioforty9.gallery.albums.view" template="studioforty9/gallery/albums/view.phtml" />
+        </reference>
+    </studioforty9_gallery_index_album>
+
+    <studioforty9_gallery_index_media>
+        <update handle="required_gallery_items"/>
+        <reference name="breadcrumbs">
+            <action method="addCrumb" ifconfig="studioforty9_gallery/default/breadcrumbs">
+                <crumbName>gallery</crumbName>
+                <crumbInfo>
+                    <label>Gallery</label>
+                    <title>Gallery</title>
+                    <link>/gallery</link>
+                </crumbInfo>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="studioforty9_gallery/media_view" name="studioforty9.gallery.media.view" template="studioforty9/gallery/media/view.phtml" />
+        </reference>
+    </studioforty9_gallery_index_media>
+
+    <required_gallery_items>
+        <reference name="root">
+            <action method="setTemplate"><value>page/1column.phtml</value></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><value>css/studioforty9/gallery/gallery.css</value></action>
+        </reference>
+        <reference name="breadcrumbs">
+            <action method="addCrumb" ifconfig="studioforty9_gallery/default/breadcrumbs">
+                <crumbName>home</crumbName>
+                <crumbInfo>
+                    <label>Home</label>
+                    <title>Home</title>
+                    <link>/</link>
+                </crumbInfo>
+            </action>
+            <action method="addCrumb" ifconfig="studioforty9_gallery/default/breadcrumbs">
+                <crumbName>gallery</crumbName>
+                <crumbInfo>
+                    <label>Gallery</label>
+                    <title>Gallery</title>
+                </crumbInfo>
+            </action>
+        </reference>
+    </required_gallery_items>
+
+</layout>

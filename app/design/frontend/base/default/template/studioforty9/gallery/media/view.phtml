@@ -1,0 +1,58 @@
+<?php
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+?>
+<?php /** @var Studioforty9_Gallery_Block_Album_View $this */ ?>
+
+<?php
+/** @var Studioforty9_Gallery_Model_Media $_media */
+$_media = $this->getMedia();
+?>
+
+<?php if (!is_null($_media)): ?>
+$_name = $_media->getName();
+<div class="page-title">
+    <h1><?php echo $this->__($_name); ?></h1>
+</div>
+
+<div class="media-item">
+
+    <img class="item-photo" src="<?php echo $_media->getFileUrl(); ?>" alt="<?php echo $_name; ?>" />
+
+    <?php $_caption = $_media->getCaption(); ?>
+    <?php if (!empty($_caption)): ?>
+    <p class="item-caption"><?php echo $_caption; ?></p>
+    <?php endif; ?>
+
+    <div class="item-details">
+        <?php $_description = $_media->getDescription(); ?>
+        <?php if (!empty($_description)): ?>
+        <p class="item-description">
+            <strong><?php echo $this->__('Description'); ?>:</strong>
+            <?php echo $_description; ?>
+        </p>
+        <?php endif; ?>
+        <p class="item-created">
+            <strong><?php echo $this->__('Created'); ?>:</strong>
+            <?php echo $_media->getCreatedAt(); ?>
+        </p>
+        <p class="item-updated">
+            <strong><?php echo $this->__('Updated'); ?>:</strong>
+            <?php echo $_media->getUpdatedAt(); ?>
+        </p>
+    </div>
+</div>
+
+<p class="back">
+    <a class="button" href="javascript:history.go(-1);">&laquo; <?php echo $this->__('Back'); ?></a>
+</p>
+<?php endif; ?>

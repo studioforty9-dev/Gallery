@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <studioforty9_gallery translate="title" module="studioforty9_gallery">
+                        <title>Gallery</title>
+                        <sort_order>1</sort_order>
+                        <children>
+                            <album>
+                                <title>Manage Gallery Albums</title>
+                            </album>
+                            <media>
+                                <title>Manage Gallery Media</title>
+                            </media>
+                        </children>
+                    </studioforty9_gallery>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <studioforty9_gallery>
+                                        <title>StudioForty9 Gallery Configuration</title>
+                                    </studioforty9_gallery>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <studioforty9_gallery translate="title" module="studioforty9_gallery">
+            <title>Gallery</title>
+            <sort_order>71</sort_order>
+            <children>
+                <album>
+                    <title>Albums</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/gallery_album/index</action>
+                </album>
+                <media>
+                    <title>Media</title>
+                    <sort_order>2</sort_order>
+                    <action>adminhtml/gallery_media/index</action>
+                </media>
+            </children>
+        </studioforty9_gallery>
+    </menu>
+</config>

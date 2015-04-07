@@ -1,0 +1,53 @@
+<?php
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+?>
+<?php /** @var Studioforty9_Gallery_Block_Album_View $this */ ?>
+
+<?php
+$_album = $this->getAlbum();
+$_media = $this->getMedia();
+$_mediaCount = count($_media);
+?>
+
+<div class="page-title">
+    <h1><?php echo $this->__($_album->getName()); ?></h1>
+</div>
+
+<?php $description = $_album->getDescription(); ?>
+<?php if (!empty($description)): ?>
+<div class="gallery-album">
+    <p><?php echo $description; ?></p>
+</div>
+<?php endif; ?>
+
+<?php if ($_mediaCount > 0): ?>
+<div class="gallery-list album-media">
+    <?php /** @var Studioforty9_Gallery_Model_Media $_medium */ ?>
+    <?php foreach($_media as $_medium): ?>
+        <?php $_name = $_medium->getName(); ?>
+        <?php $_caption = $_medium->getCaption(); ?>
+    <a data-image="<?php echo $_medium->getUrl(); ?>" class="gallery-item media" rel="lightbox[<?php echo $_album->getUrlKey(); ?>]" title="<?php echo (empty($caption) ? $_name : $_caption); ?>" href="<?php echo $_medium->getResizedImage(800, 600, 90, false, false); ?>">
+        <span class="gallery-item-container">
+            <img class="item-thumbnail" src="<?php echo $_medium->getResizedImage(300, 300); ?>" alt="<?php echo $_name; ?>" />
+            <span class="item-name"><?php echo $_name; ?></span>
+        </span>
+    </a>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+<div class="albums-media no-media"><p><?php echo $this->__('Sorry, there are no photos.'); ?></p></div>
+<?php endif; ?>
+
+<p class="back">
+    <a class="button" href="javascript:history.go(-1);">&laquo; <?php echo $this->__('Back'); ?></a>
+</p>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+-->
+<layout>
+
+    <adminhtml_gallery_album_index>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>studioforty9/gallery/js/position.js</name></action>
+        </reference>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>studioforty9_gallery/album</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="studioforty9_gallery/adminhtml_album" name="album"/>
+        </reference>
+    </adminhtml_gallery_album_index>
+
+    <adminhtml_gallery_album_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="studioforty9_gallery/adminhtml_album_grid" name="album.grid"/>
+        </block>
+    </adminhtml_gallery_album_grid>
+
+    <adminhtml_gallery_album_mediatab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="studioforty9_gallery/adminhtml_album_edit_tab_grid" name="album.mediagrid"/>
+            <block type="adminhtml/widget_grid_serializer" name="album.mediagrid.serializer">
+                <reference name="album.mediagrid.serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>album.mediagrid</grid_block_name>
+                        <data_callback>getSelectedMedia</data_callback>
+                        <hidden_input_name>media_ids</hidden_input_name>
+                        <reload_param_name>media_selected</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>grid_position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_gallery_album_mediatab>
+
+    <adminhtml_gallery_album_mediagrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="studioforty9_gallery/adminhtml_album_edit_tab_grid" name="album.mediagrid"/>
+        </block>
+    </adminhtml_gallery_album_mediagrid>
+
+    <!-- Gallery Add/Edit Action -->
+    <adminhtml_gallery_album_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>studioforty9/gallery/position.js</name></action>
+        </reference>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>studioforty9_gallery/album</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="studioforty9_gallery/adminhtml_album_edit" name="album_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="studioforty9_gallery/adminhtml_album_edit_tabs" name="album_tabs"></block>
+        </reference>
+    </adminhtml_gallery_album_edit>
+
+    <!-- -->
+
+    <adminhtml_gallery_media_index>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>studioforty9/gallery/position.js</name></action>
+        </reference>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>studioforty9_gallery/media</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="studioforty9_gallery/adminhtml_media" name="media"/>
+        </reference>
+    </adminhtml_gallery_media_index>
+
+    <adminhtml_gallery_media_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="studioforty9_gallery/adminhtml_media_grid" name="media_grid"/>
+        </block>
+    </adminhtml_gallery_media_grid>
+
+    <!-- Media Add/Edit Action -->
+    <adminhtml_gallery_media_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>studioforty9_gallery/media</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="studioforty9_gallery/adminhtml_media_edit" name="media_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="studioforty9_gallery/adminhtml_media_edit_tabs" name="media_tabs"></block>
+        </reference>
+    </adminhtml_gallery_media_edit>
+
+</layout>

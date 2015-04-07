@@ -1,0 +1,26 @@
+{
+  "name": "studioforty9/gallery",
+  "description": "Magento Gallery Extension",
+  "type": "magento-module",
+  "homepage": "https://github.com/studioforty9/gallery",
+  "license": "BSD-3-Clause",
+  "keywords": ["gallery", "albums"],
+  "authors": [
+    {
+      "name": "StudioForty9",
+      "homepage": "http://www.studioforty9.com/",
+      "role": "owner"
+    },
+    {
+      "name": "Eoghan O'Brien",
+      "homepage": "http://github.com/eoghanobrien/",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  },
+  "require-dev": {
+    "ecomdev/ecomdev_phpunit": "*"
+  }
+}

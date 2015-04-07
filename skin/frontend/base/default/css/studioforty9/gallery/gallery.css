@@ -1,0 +1,351 @@
+/**
+ * Studioforty9 Gallery
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Gallery
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/gallery/blob/master/LICENCE BSD
+ * @version   1.0.0
+ * @link      https://github.com/studioforty9/gallery
+ */
+
+.gallery-album {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+}
+
+.gallery-list {
+    box-sizing: border-box;
+    margin-left: -1%;
+    margin-right: -1%;
+    padding-bottom: 1%;
+}
+.gallery-list:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.gallery-item {
+    float: left;
+    margin-bottom: 2%;
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 25%;
+}
+
+.gallery-item-container {
+    -webkit-box-shadow: 0 0 3px #ddd;
+    -moz-box-shadow: 0 0 3px #ddd;
+    box-shadow: 0 0 3px #ddd;
+    box-sizing: border-box;
+    clear: both;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+.item-thumbnail {
+    box-sizing: border-box;
+    display: block;
+    max-width: 100%;
+}
+.item-name {
+    background-color: #fff;
+    color: #666;
+    bottom: 0;
+    box-sizing: border-box;
+    display: block;
+    left: 0;
+    padding: 8px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+
+.media-item {
+
+}
+
+.item-photo {
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 3px #ddd;
+    -moz-box-shadow: 0 0 3px #ddd;
+    box-shadow: 0 0 3px #ddd;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+.item-caption {
+    color: #666;
+    padding: 15px 0 0;
+}
+.item-details {
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+.item-description {
+    margin-bottom: 15px;
+}
+.item-description strong {
+    display: block;
+}
+.item-created {}
+.item-updated {}
+
+/** Large **/
+@media (max-width: 1170px) {
+    .gallery-item {
+        float: left;
+        margin-bottom: 2%;
+        padding-left: 1%;
+        padding-right: 1%;
+        width: 25%;
+    }
+}
+/** Medium **/
+@media (max-width: 959px) {
+    .gallery-item {
+        float: left;
+        margin-bottom: 2%;
+        padding-left: 1%;
+        padding-right: 1%;
+        width: 33%;
+    }
+}
+/** Small **/
+@media (max-width: 767px) {
+    .gallery-item {
+        float: left;
+        margin-bottom: 2%;
+        padding-left: 1%;
+        padding-right: 1%;
+        width: 33%;
+    }
+}
+/** Extra Small **/
+@media (max-width: 480px) {
+    .gallery-item {
+        float: left;
+        margin-bottom: 2%;
+        padding-left: 1%;
+        padding-right: 1%;
+        width: 50%;
+    }
+}
+
+/* Lightbox */
+#lightbox {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    text-align: center;
+    line-height: 0;
+    color: #151410
+}
+
+#lightbox a, #lightbox a:hover {
+    border-bottom: none;
+    color: #151410;
+    text-decoration: underline
+}
+
+#lightbox a img {
+    border: none
+}
+
+#outerImageContainer {
+    position: relative;
+    background-color: #fff;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto
+}
+
+#imageContainer {
+    padding: 10px
+}
+
+#loading {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    height: 25%;
+    width: 100%;
+    text-align: center;
+    line-height: 0
+}
+
+#loadingLink {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    background: url("../../../images/studioforty9/gallery/loading.gif") center center no-repeat;
+    text-indent: -9999px
+}
+
+#hoverNav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10
+}
+
+#imageContainer > #hoverNav {
+    left: 0
+}
+
+#hoverNav a {
+    outline: none
+}
+
+#prevLinkImg, #nextLinkImg {
+    width: 49%;
+    height: 100%;
+    background: transparent url("../../../images/studioforty9/gallery/blank.gif") no-repeat; /* Trick IE into showing hover */
+    display: block;
+    text-indent: -9999px
+}
+
+#prevLinkImg {
+    left: 0;
+    float: left
+}
+
+#nextLinkImg {
+    right: 0;
+    float: right
+}
+
+#prevLinkImg:hover, #prevLinkImg:visited:hover {
+    background: url("../../../images/studioforty9/gallery/prevlabel.png") left 50% no-repeat;
+}
+
+#nextLinkImg:hover, #nextLinkImg:visited:hover {
+    background: url("../../../images/studioforty9/gallery/nextlabel.png") right 50% no-repeat;
+}
+
+#imageDataContainer {
+    font: 10px Verdana, Helvetica, sans-serif;
+    background-color: #fff;
+    margin: 0 auto;
+    line-height: 1.4em
+}
+
+#imageData {
+    padding: 0 10px
+}
+
+#imageDetails {
+    width: 70%;
+    float: left;
+    text-align: left
+}
+
+#caption {
+    font-weight: bold
+}
+
+#numberDisplay {
+    display: block;
+    clear: left
+}
+
+#detailsNav {
+    display: block;
+    clear: left;
+    padding: 0 0 10px 0
+}
+
+#prevLinkDetails {
+    margin: 0 8px 0 0
+}
+
+#nextLinkDetails {
+    margin: 0 8px 0 0
+}
+
+#closeLink {
+    display: block;
+    margin: 0;
+    padding: 0 0 10px 0;
+    text-decoration: none;
+    float: right;
+    width: 66px;
+    height: 28px;
+    background: url("../../../images/studioforty9/gallery/closelabel.png") no-repeat;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    width: 100%;
+    height: 500px;
+    background-color: #151410;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+* html > body .clearfix {
+    display: inline-block;
+    width: 100%
+}
+
+* html .clearfix {
+    height: 1%; /* Hide from IE-mac */
+}
+
+@media (max-width: 959px) {
+    #outerImageContainer, #imageDataContainer {
+        height: auto !important;
+        width: 100% !important;
+    }
+    #prevLinkImg,
+    #nextLinkImg {
+        bottom: 0 !important;
+        display: block !important;
+        float: none !important;
+        height: auto !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 50% !important;
+    }
+    #prevLinkImg {
+        left: 0 !important;
+    }
+    #nextLinkImg {
+        right: 0 !important;
+    }
+    #lightboxImage {
+        height: auto !important;
+        width: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+}

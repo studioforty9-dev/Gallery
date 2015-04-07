@@ -1,0 +1,9 @@
+app/code/community/Studioforty9/Gallery app/code/community/Studioforty9/Gallery
+app/design/adminhtml/default/default/layout/studioforty9_gallery.xml app/design/adminhtml/default/default/layout/studioforty9_gallery.xml
+app/design/frontend/base/default/layout/studioforty9_gallery.xml app/design/frontend/base/default/layout/studioforty9_gallery.xml
+app/design/frontend/base/default/template/studioforty9/gallery app/design/frontend/base/default/template/studioforty9/gallery
+app/etc/modules/Studioforty9_Gallery.xml app/etc/modules/Studioforty9_Gallery.xml
+app/locale/en_US/Studioforty9_Gallery.csv app/locale/en_US/Studioforty9_Gallery.csv
+js/studioforty9/gallery js/studioforty9/gallery
+skin/frontend/base/default/css/studioforty9/gallery skin/frontend/base/default/css/studioforty9/gallery
+skin/frontend/base/default/images/studioforty9/gallery skin/frontend/base/default/images/studioforty9/gallery
