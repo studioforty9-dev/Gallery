@@ -21,7 +21,7 @@ Add the package to your require list, here's a smaple composer file:
 {
   "require": {
     "studioforty9/gallery": "dev-master"
-  }
+  },
   "repositories": [
     { "type": "composer", "url": "http://packages.firegento.com" },
     { "type": "vcs", "url": "http://github.com/studioforty9/gallery" }
