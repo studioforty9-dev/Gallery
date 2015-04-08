@@ -75,6 +75,7 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         $this->_setActiveMenu('studioforty9/gallery');
         $this->_addBreadcrumb($this->__('Gallery'), $this->__('Media'));
         $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
+        $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
 
         $this->renderLayout();
     }

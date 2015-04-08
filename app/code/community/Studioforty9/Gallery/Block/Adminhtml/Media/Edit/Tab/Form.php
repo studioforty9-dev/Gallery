@@ -205,14 +205,26 @@ class Studioforty9_Gallery_Block_Adminhtml_Media_Edit_Tab_Form extends Mage_Admi
      */
     protected function _getDescriptionField()
     {
+        $wysiwygConfig = Mage::getSingleton('cms/wysiwyg_config')->getConfig(
+            array(
+                'tab_id' => 'form_section',
+                'add_widgets' => false,
+                'add_variables' => false,
+                'add_images' => false
+            )
+        );
+
         return array(
             'input'    => 'editor',
-            'name'     => 'summary',
-            'label'    => $this->_getHelper()->__('Media Description'),
-            'title'    => $this->_getHelper()->__('Media Description'),
-            'style'    => 'width:274px; height:200px;',
-            'wysiwyg'  => false,
-            'required' => false
+            'name'     => 'description',
+            'label'    => $this->_getHelper()->__('Description'),
+            'title'    => $this->_getHelper()->__('Description'),
+            'required' => false,
+            'class'    => '',
+            'style'    => 'width:274px; height:500px;',
+            'wysiwyg' => true,
+            'state' => 'html',
+            'config' => $wysiwygConfig
         );
     }
 
