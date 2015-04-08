@@ -45,12 +45,11 @@ class Studioforty9_Gallery_Helper_Album extends Mage_Core_Helper_Abstract
      */
     public function getAlbumUrl()
     {
+        /** @var Studioforty9_Gallery_Model_Album $album */
         if (!$album = Mage::registry('current_album')) {
             return false;
         }
 
-        return Mage::getUrl('gallery/index/album', array(
-            'url_key' => $album->getUrlKey()
-        ));
+        return $album->getUrl();
     }
 }

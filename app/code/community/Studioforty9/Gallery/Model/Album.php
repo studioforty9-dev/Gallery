@@ -116,11 +116,7 @@ class Studioforty9_Gallery_Model_Album extends Mage_Core_Model_Abstract
      */
     public function getUrl()
     {
-        return sprintf('gallery/album/%s/', $this->getUrlKey());
-        /* TODO: Add config option to fallback to simple urls
-        return Mage::getUrl('gallery/index/album', array(
-            'url_key' => $this->getUrlKey())
-        );*/
+        return Mage::getUrl('gallery/album/'.$this->getUrlKey());
     }
 
     /**

@@ -45,12 +45,11 @@ class Studioforty9_Gallery_Helper_Media extends Mage_Core_Helper_Abstract
      */
     public function getMediaUrl()
     {
+        /** @var Studioforty9_Gallery_Model_Media $media */
         if (!$media = Mage::registry('current_media')) {
             return false;
         }
 
-        return Mage::getUrl('gallery/index/media', array(
-            'url_key' => $media->getUrlKey()
-        ));
+        return $media->getUrl();
     }
 }
