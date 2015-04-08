@@ -29,6 +29,7 @@
 }
 
 .gallery-item {
+    box-sizing: border-box;
     float: left;
     margin-bottom: 2%;
     padding-left: 1%;
