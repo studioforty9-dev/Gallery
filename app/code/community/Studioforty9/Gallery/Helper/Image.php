@@ -21,6 +21,11 @@
 class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
 {
     /**
+     * @var string $_name
+     */
+    protected $_name;
+
+    /**
      * @var string $_filePath
      */
     protected $_filePath;
@@ -81,6 +86,16 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
     protected $_backgroundColor = array(255, 255, 255);
 
     /**
+     * @var array $_crop
+     */
+    protected $_crop = array(
+        'top'    => 0,
+        'left'   => 0,
+        'right'  => 0,
+        'bottom' => 0
+    );
+
+    /**
      * init()
      *
      * @param string $file
@@ -93,6 +108,28 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
         $this->setFileName(basename($file));
         $this->setType($type);
         return $this;
+    }
+
+    /**
+     * Set the name of the image.
+     *
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->_name = $name;
+        return $this;
+    }
+
+    /**
+     * Get the name of the image.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->_name;
     }
 
     /**
@@ -258,6 +295,16 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * getConstrainOnly()
+     *
+     * @return boolean
+     */
+    public function getConstrainOnly()
+    {
+        return $this->_constrainOnly;
+    }
+
+    /**
      * setKeepFrame()
      *
      * @param boolean $keepFrame
@@ -267,16 +314,6 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
     {
         $this->_keepFrame = $keepFrame;
         return $this;
-    }
-
-    /**
-     * getConstrainOnly()
-     *
-     * @return boolean
-     */
-    public function getConstrainOnly()
-    {
-        return $this->_constrainOnly;
     }
 
     /**
@@ -354,6 +391,37 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Set the crop dimensions.
+     *
+     * @param int $top
+     * @param int $left
+     * @param int $right
+     * @param int $bottom
+     * @return $this
+     */
+    public function setCrop($top = 0, $left = 0, $right = 0, $bottom = 0)
+    {
+        $this->_crop = array(
+            'top'    => $top,
+            'left'   => $left,
+            'right'  => $right,
+            'bottom' => $bottom,
+        );
+
+        return $this;
+    }
+
+    /**
+     * Get the crop dimensions.
+     *
+     * @return array
+     */
+    public function getCrop()
+    {
+        return $this->_crop;
+    }
+
+    /**
      * __toString()
      *
      * @return string
@@ -402,15 +470,16 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
         }
 
         $_image->backgroundColor($this->_backgroundColor);
+        //$_image->setImageBackgroundColor($this->rgb2hex($this->_backgroundColor));
 
         if ($this->_scheduleResize) {
             $_image->resize($this->getWidth(), $this->getHeight());
         } else {
-            // Crop, perhaps!?
+            $_image->crop($this->_crop['top'], $this->_crop['left'], $this->_crop['right'], $this->_crop['bottom']);
         }
 
         try {
-            $_image->save($cacheFile);
+            $_image->save($cacheFile, $this->getName());
         } catch (Exception $e) {
             Mage::logException($e);
             $cacheUrl = $placeholder;
