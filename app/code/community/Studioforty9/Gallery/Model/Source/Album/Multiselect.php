@@ -29,12 +29,7 @@ class Studioforty9_Gallery_Model_Source_Album_Multiselect
     {
         $albums = Mage::getModel('studioforty9_gallery/album')->getCollection()
             ->addFieldToSelect(array('name', 'entity_id'))
-            ->addOrder('name', 'ASC')
-            ->addFieldToFilter(
-                'status', array(
-                    'eq' => Studioforty9_Gallery_Model_Album::ENABLED
-                )
-            );
+            ->addOrder('name', 'ASC');
 
         $options = array();
         if ($albums->count() > 0) {
