@@ -151,6 +151,12 @@
                 <keywords></keywords>
                 <description></description>
             </seo>
+            <album>
+                <perpage>15,30,50,100</perpage>
+            </album>
+            <media>
+                <perpage>15,30,50,100</perpage>
+            </media>
         </studioforty9_gallery>
     </default>
 

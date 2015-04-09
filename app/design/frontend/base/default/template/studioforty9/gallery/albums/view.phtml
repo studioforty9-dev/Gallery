@@ -44,6 +44,7 @@ $_mediaCount = count($_media);
     </a>
     <?php endforeach; ?>
 </div>
+<?php echo $this->getPagerHtml(); ?>
 <?php else: ?>
 <div class="albums-media no-media"><p><?php echo $this->__('Sorry, there are no photos.'); ?></p></div>
 <?php endif; ?>

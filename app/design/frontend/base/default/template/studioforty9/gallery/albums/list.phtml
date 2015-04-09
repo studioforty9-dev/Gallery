@@ -33,6 +33,7 @@ $_albumCount = count($_albums);
     </a>
     <?php endforeach; ?>
 </div>
+<?php echo $this->getPagerHtml(); ?>
 <?php else: ?>
 <div class="albums no-albums"><p><?php echo $this->__('Sorry, there are no albums.'); ?></p></div>
 <?php endif; ?>

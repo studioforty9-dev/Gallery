@@ -102,6 +102,44 @@
                         </description>
                     </fields>
                 </seo>
+                <album translate="label">
+                    <label>Album Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <perpage translate="label">
+                            <label>Albums per page</label>
+                            <frontend_type>text</frontend_type>
+                            <help>Comma separated list e.g. 15,30,50,100</help>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </perpage>
+                    </fields>
+                </album>
+                <media translate="label">
+                    <label>Media Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <perpage translate="label">
+                            <label>Media per page</label>
+                            <frontend_type>text</frontend_type>
+                            <help>Comma separated list e.g. 15,30,50,100</help>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </perpage>
+                    </fields>
+                </media>
             </groups>
         </studioforty9_gallery>
     </sections>

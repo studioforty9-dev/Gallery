@@ -30,11 +30,21 @@ class Studioforty9_Gallery_Helper_Data extends Mage_Core_Helper_Abstract
         return $this->_getUrl('gallery');
     }
 
+    /**
+     * Flag to determine if we should use a link in the top links.
+     *
+     * @return bool
+     */
     public function getUseLink()
     {
         return Mage::getStoreConfigFlag('studioforty9_gallery/default/uselink');
     }
 
+    /**
+     * The gallery name for the label on the link.
+     *
+     * @return string
+     */
     public function getGalleryName()
     {
         $name = Mage::getStoreConfig('studioforty9_gallery/default/link');
@@ -45,6 +55,7 @@ class Studioforty9_Gallery_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $name;
     }
+
     /**
      * Flag to determine whether or not the breadcrumbs should be displayed.
      *
@@ -65,15 +76,49 @@ class Studioforty9_Gallery_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('studioforty9_gallery/seo/title');
     }
 
+    /**
+     * The default seo keywords.
+     *
+     * @return string
+     */
     public function getSeoKeywords()
     {
         return Mage::getStoreConfig('studioforty9_gallery/seo/keywords');
     }
 
+    /**
+     * The default seo description.
+     *
+     * @return string
+     */
     public function getSeoDescription()
     {
         return Mage::getStoreConfig('studioforty9_gallery/seo/description');
     }
+
+    /**
+     * Get the album perpage options.
+     *
+     * @return array
+     */
+    public function getAlbumPerPageOptions()
+    {
+        $options = Mage::getStoreConfig('studioforty9_gallery/album/perpage');
+        return $this->getCommaSeparatedAsArray($options);
+    }
+
+    /**
+     * Get the media perpage options.
+     *
+     * @return array
+     */
+    public function getMediaPerPageOptions()
+    {
+        $options = Mage::getStoreConfig('studioforty9_gallery/media/perpage');
+        return $this->getCommaSeparatedAsArray($options);
+    }
+
+    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
     /**
      * getImagePath
@@ -110,5 +155,25 @@ class Studioforty9_Gallery_Helper_Data extends Mage_Core_Helper_Abstract
         $urlKey = strtolower($urlKey);
         $urlKey = trim($urlKey, '-');
         return $urlKey;
+    }
+
+    /**
+     * Turn a comma separated string into an array.
+     *
+     * @param string $string
+     * @return array
+     */
+    public function getCommaSeparatedAsArray($string)
+    {
+        if (empty($string)) {
+            return array();
+        }
+
+        $limits = array();
+        foreach (explode(',', $string) as $num) {
+            $limits[$num] = $num;
+        }
+
+        return $limits;
     }
 }

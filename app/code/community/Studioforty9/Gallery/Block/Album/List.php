@@ -21,11 +21,26 @@
 class Studioforty9_Gallery_Block_Album_List extends Mage_Core_Block_Template
 {
     /**
-     * Set the collection on the block before rendering the html.
+     * Prepare the layout.
+     *
+     * @return self
      */
-    public function _beforeToHtml()
+    public function _prepareLayout()
     {
-        $this->setData('albums', $this->getAlbumsCollection());
+        parent::_prepareLayout();
+
+        $helper = $this->helper('studioforty9_gallery');
+        $collection = $this->getAlbumsCollection();
+
+        /** @var Mage_Page_Block_Html_Pager $pager */
+        $pager = $this->getLayout()->createBlock('page/html_pager', 'gallery.album.pager');
+        $pager->setAvailableLimit($helper->getAlbumPerPageOptions());
+        $pager->setCollection($collection);
+        $this->setChild('pager', $pager);
+
+        $this->setData('albums', $collection);
+
+        return $this;
     }
 
     /**
@@ -43,5 +58,15 @@ class Studioforty9_Gallery_Block_Album_List extends Mage_Core_Block_Template
             );
 
         return $collection;
+    }
+
+    /**
+     * Get the pagination html.
+     *
+     * @return string
+     */
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
     }
 }
