@@ -64,7 +64,7 @@ class Studioforty9_Gallery_IndexController extends Mage_Core_Controller_Front_Ac
 
         $this->_initGalleryLayout();
         $this->_initSeoContent(
-            '' === $album->getMetaTitle() ? $album->getMetaTitle() : $album->getName(),
+            '' !== (string) $album->getMetaTitle() ? $album->getMetaTitle() : $album->getName(),
             $album->getMetaKeywords(),
             $album->getMetaDescription()
         );
@@ -100,7 +100,7 @@ class Studioforty9_Gallery_IndexController extends Mage_Core_Controller_Front_Ac
 
         $this->_initGalleryLayout();
         $this->_initSeoContent(
-            '' === $media->getMetaTitle() ? $media->getMetaTitle() : $media->getName(),,
+            '' !== (string) $media->getMetaTitle() ? $media->getMetaTitle() : $media->getName(),,
             $media->getMetaKeywords(),
             $media->getMetaDescription()
         );
