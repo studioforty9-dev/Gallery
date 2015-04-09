@@ -20,6 +20,9 @@
  */
 class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminhtml_Controller_Action
 {
+    /**
+     * Set some defaults on preDispatch
+     */
     public function preDispatch()
     {
         parent::preDispatch();
@@ -27,18 +30,27 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
              ->_title($this->_getHelper()->__('Albums'));
     }
 
+    /**
+     * The indexAction should display a grid.
+     */
     public function indexAction()
     {
         $this->loadLayout();
         $this->renderLayout();
     }
 
+    /**
+     * The gridAction is actually more for ajax requests from the index grid.
+     */
     public function gridAction()
     {
         $this->loadLayout();
         $this->renderLayout();
     }
 
+    /**
+     * The sortAction is run via AJAX and saves the position order.
+     */
     public function sortAction()
     {
         if (!$this->getRequest()->isXmlHttpRequest()) {
@@ -72,17 +84,28 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
         echo json_encode(array('error' => $error, 'message' => $message));
     }
 
+    /**
+     * The newAction simply forwards to editAction.
+     */
     public function newAction()
     {
         return $this->_forward('edit');
     }
 
+    /**
+     * The mediaTabAction loads in the mediaGrid via AJAX when you click
+     * on the tab via the editForm.
+     */
     public function mediaTabAction()
     {
         $this->loadLayout();
         $this->renderLayout();
     }
 
+    /**
+     * The mediaGridAction sets some data on the mediaGrid and enables AJAX
+     * searching etc.
+     */
     public function mediaGridAction()
     {
         $selectedMedia = $this->getRequest()->getPost('media_selected', null);
@@ -92,6 +115,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
         $this->renderLayout();
     }
 
+    /**
+     * The editAction displays the edit form.
+     */
     public function editAction()
     {
         /* @var Studioforty9_Gallery_Model_Album $album */
@@ -127,6 +153,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
         $this->renderLayout();
     }
 
+    /**
+     * The _saveAction saves the data from the editAction.
+     */
     protected function _saveAction(Studioforty9_Gallery_Model_Album $album, $postData)
     {
         if ($mediaIds = $this->getRequest()->getParam('media_ids', null)) {
@@ -190,6 +219,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
         return $this->_redirect($route, array('id' => $album->getId()));
     }
 
+    /**
+     * The deleteAction deletes an album.
+     */
     public function deleteAction()
     {
         $albumId = $this->getRequest()->getParam('id');
@@ -209,6 +241,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
         return $this->_redirect('*/*');
     }
 
+    /**
+     * The massDeleteAction deletes lots of media at once.
+     */
     public function massDeleteAction()
     {
         $albumIds = $this->getRequest()->getParam('albums');
@@ -244,6 +279,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
         return $this->_redirect('*/*');
     }
 
+    /**
+     * The massStatusAction updates the status of lots of media at once.
+     */
     public function massStatusAction()
     {
         $status = ($this->getRequest()->getParams('status') == 1)
@@ -289,8 +327,8 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
     /**
      * Upload the images from the $_FILES array.
      *
-     * @param $model
-     * @param $uploadFields
+     * @param Varien_Object $model
+     * @param array $uploadFields
      * @throws Exception
      * @internal param Varien_Object $model
      */
@@ -314,6 +352,8 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
     }
 
     /**
+     * Get a helper.
+     *
      * @param null|string $name
      * @return Studioforty9_Gallery_Helper_Data
      */

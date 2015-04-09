@@ -17,9 +17,13 @@
  * @category   Studioforty9
  * @package    Studioforty9_Gallery
  * @subpackage Controller
+ * @layoutXml app/design/adminhtml/default/default/layout/studioforty9_gallery.xml
  */
 class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminhtml_Controller_Action
 {
+    /**
+     * Set some defaults on preDispatch
+     */
     public function preDispatch()
     {
         parent::preDispatch();
@@ -28,7 +32,7 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
     }
 
     /**
-     * @layoutXml app/design/adminhtml/default/default/layout/studioforty9_gallery.xml
+     * The indexAction should display a grid.
      */
     public function indexAction()
     {
@@ -36,6 +40,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         $this->renderLayout();
     }
 
+    /**
+     * The gridAction is actually more for ajax requests from the index grid.
+     */
     public function gridAction()
     {
         $this->loadLayout();
@@ -43,7 +50,7 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
     }
 
     /**
-     * @layoutXml app/design/adminhtml/default/default/layout/studioforty9_gallery.xml
+     * The editAction displays the edit form.
      */
     public function editAction()
     {
@@ -80,7 +87,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         $this->renderLayout();
     }
 
-
+    /**
+     * The _saveAction saves the data from the editAction.
+     */
     protected function _saveAction($media, $postData)
     {
         $albumIds = array();
@@ -141,6 +150,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         return $this->_redirect($route, array('id' => $media->getId()));
     }
 
+    /**
+     * The sortAction is run via AJAX and saves the position order.
+     */
     public function sortAction()
     {
         if (!$this->getRequest()->isXmlHttpRequest()) {
@@ -174,6 +186,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         echo json_encode(array('error' => $error, 'message' => $message));
     }
 
+    /**
+     * The massDeleteAction deletes lots of media at once.
+     */
     public function massDeleteAction()
     {
         $mediaIds = $this->getRequest()->getParam('media');
@@ -209,6 +224,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         return $this->_redirect('*/*');
     }
 
+    /**
+     * The massStatusAction updates the status of lots of media at once.
+     */
     public function massStatusAction()
     {
         $status = ($this->getRequest()->getParam('status') == 1)
@@ -248,6 +266,9 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
         return $this->_redirect('*/*');
     }
 
+    /**
+     * The massRelationAction relates lots of media to an album at once.
+     */
     public function massRelationAction()
     {
         $albumId = (int) $this->getRequest()->getParam('album');
@@ -257,7 +278,13 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
             return $this->_redirect('*/*');
         }
 
-        $mediaIds = $this->getRequest()->getParam('media');
+        $mediaIds = array();
+        $mediaIdsRaw = $this->getRequest()->getParam('media');
+        if (!empty($mediaIdsRaw) && is_array($mediaIdsRaw)) {
+            foreach ($mediaIdsRaw as $mediaId) {
+                $mediaIds[$mediaId] = array();
+            }
+        }
 
         try {
             $album->syncMedia($mediaIds);
