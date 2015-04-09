@@ -166,7 +166,8 @@ class Studioforty9_Gallery_Adminhtml_Gallery_AlbumController extends Mage_Adminh
                 $this->_getSession()->addError($e->getMessage());
             }
         } else {
-            if (!$deleteThumbnail) {
+            $currentThumbnail = $album->getThumbnail();
+            if (!$deleteThumbnail && empty($currentThumbnail)) {
                 $this->_getSession()->addError('The thumbnail file is required.');
                 $missingThumbnail = true;
             }

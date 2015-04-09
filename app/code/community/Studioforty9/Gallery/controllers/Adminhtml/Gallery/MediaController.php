@@ -117,7 +117,8 @@ class Studioforty9_Gallery_Adminhtml_Gallery_MediaController extends Mage_Adminh
                 $this->_getSession()->addError($e->getMessage());
             }
         } else {
-            if (!$deleteFile) {
+            $currentFile = $media->getFile();
+            if (!$deleteFile && empty($currentFile)) {
                 $this->_getSession()->addError('The media file is required.');
                 $missingFile = true;
             }
