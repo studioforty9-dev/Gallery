@@ -176,4 +176,28 @@ class Studioforty9_Gallery_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $limits;
     }
+
+    /**
+     * Get the global wysiwyg configuration for the extension.
+     *
+     * @return string
+     */
+    public function getWysiwygConfig()
+    {
+        return <<<WYSIWYG
+if(window.tinyMceWysiwygSetup) {
+    tinyMceWysiwygSetup.prototype.originalGetSettings = tinyMceWysiwygSetup.prototype.getSettings;
+    tinyMceWysiwygSetup.prototype.getSettings = function(mode) {
+        var settings = this.originalGetSettings(mode);
+        settings.extended_valid_elements = 'input[placeholder|accept|alt|checked|disabled|maxlength|name|readonly|size|src|type|value]';
+        settings.theme_advanced_buttons1 = 'bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,blockquote,outdent,indent,|,formatselect,|,pasteword,|,bullist,numlist,|,link,unlink,anchor,image,|,fontselect,fontsizeselect,fullscreen';
+        settings.theme_advanced_buttons2 = '';
+        settings.theme_advanced_buttons3 = '';
+        settings.theme_advanced_buttons4 = '';
+        settings.forced_root_block = false;
+        return settings;
+    };
+}
+WYSIWYG;
+    }
 }

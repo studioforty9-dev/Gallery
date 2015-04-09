@@ -49,5 +49,7 @@ class Studioforty9_Gallery_Block_Adminhtml_Media_Edit extends Mage_Adminhtml_Blo
             ? $this->__('Edit') 
             : $this->__('New');
         $this->_headerText =  $newOrEdit . ' ' . $this->__('Media');
+
+        $this->_formScripts[] = Mage::helper('studioforty9_gallery')->getWysiwygConfig();
     }
 }

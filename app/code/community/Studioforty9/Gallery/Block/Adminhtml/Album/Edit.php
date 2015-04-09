@@ -50,5 +50,7 @@ class Studioforty9_Gallery_Block_Adminhtml_Album_Edit extends Mage_Adminhtml_Blo
             : $this->__('New');
 
         $this->_headerText =  $newOrEdit . ' ' . $this->__('Album');
+
+        $this->_formScripts[] = Mage::helper('studioforty9_gallery')->getWysiwygConfig();
     }
 }
