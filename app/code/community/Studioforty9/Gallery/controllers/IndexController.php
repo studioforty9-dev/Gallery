@@ -63,7 +63,11 @@ class Studioforty9_Gallery_IndexController extends Mage_Core_Controller_Front_Ac
         Mage::register('current_album', $album);
 
         $this->_initGalleryLayout();
-        $this->_initSeoContent($album->getMetaTitle(), $album->getMetaKeywords(), $album->getMetaDescription());
+        $this->_initSeoContent(
+            '' === $album->getMetaTitle() ? $album->getMetaTitle() : $album->getName(),
+            $album->getMetaKeywords(),
+            $album->getMetaDescription()
+        );
 
         if ($this->_helper->getUseBreadcrumbs()) {
             if ($breadcrumbs = $this->getLayout()->getBlock('breadcrumbs')) {
@@ -95,7 +99,11 @@ class Studioforty9_Gallery_IndexController extends Mage_Core_Controller_Front_Ac
         Mage::register('current_media', $media);
 
         $this->_initGalleryLayout();
-        $this->_initSeoContent($album->getMetaTitle(), $album->getMetaKeywords(), $album->getMetaDescription());
+        $this->_initSeoContent(
+            '' === $media->getMetaTitle() ? $media->getMetaTitle() : $media->getName(),,
+            $media->getMetaKeywords(),
+            $media->getMetaDescription()
+        );
 
         if ($this->_helper->getUseBreadcrumbs()) {
             if ($breadcrumbs = $this->getLayout()->getBlock('breadcrumbs')) {
