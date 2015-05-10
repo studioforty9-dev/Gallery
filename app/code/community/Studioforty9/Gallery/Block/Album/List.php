@@ -25,7 +25,7 @@ class Studioforty9_Gallery_Block_Album_List extends Mage_Core_Block_Template
      *
      * @return self
      */
-    public function _prepareLayout()
+    protected function _prepareLayout()
     {
         parent::_prepareLayout();
 

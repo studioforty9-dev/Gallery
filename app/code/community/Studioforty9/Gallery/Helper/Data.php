@@ -145,7 +145,7 @@ class Studioforty9_Gallery_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Format a string into a valid URL key.
      *
-     * @param $str
+     * @param string $str
      * @return string
      */
     public function formatUrlKey($str)

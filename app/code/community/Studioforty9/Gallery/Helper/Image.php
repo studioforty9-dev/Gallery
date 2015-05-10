@@ -20,74 +20,46 @@
  */
 class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
 {
-    /**
-     * @var string $_name
-     */
+    /** @var string $_name */
     protected $_name;
 
-    /**
-     * @var string $_filePath
-     */
+    /** @var string $_filePath */
     protected $_filePath;
 
-    /**
-     * @var string $_fileName
-     */
+    /** @var string $_fileName */
     protected $_fileName;
 
-    /**
-     * @var string $_type
-     */
+    /** @var string $_type */
     protected $_type = '';
 
-    /**
-     * @var int $_width
-     */
+    /** @var int $_width */
     protected $_width;
 
-    /**
-     * @var int $_height
-     */
+    /** @var int $_height */
     protected $_height;
 
-    /**
-     * @var bool $_scheduleResize
-     */
-    protected $_scheduleResize;
+    /** @var bool $_scheduleResize */
+    protected $_scheduleResize = false;
 
-    /**
-     * @var int $_quality
-     */
+    /** @var int $_quality */
     protected $_quality = 90;
 
-    /**
-     * @var bool $_keepAspectRatio
-     */
+    /** @var bool $_keepAspectRatio */
     protected $_keepAspectRatio = true;
 
-    /**
-     * @var bool $_keepFrame
-     */
+    /** @var bool $_keepFrame */
     protected $_keepFrame = true;
 
-    /**
-     * @var bool $_keepTransparency
-     */
+    /** @var bool $_keepTransparency */
     protected $_keepTransparency = true;
 
-    /**
-     * @var bool $_constrainOnly
-     */
+    /** @var bool $_constrainOnly */
     protected $_constrainOnly = false;
 
-    /**
-     * @var array $_backgroundColor
-     */
+    /** @var array $_backgroundColor */
     protected $_backgroundColor = array(255, 255, 255);
 
-    /**
-     * @var array $_crop
-     */
+    /** @var array $_crop */
     protected $_crop = array(
         'top'    => 0,
         'left'   => 0,
@@ -379,7 +351,10 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Set the background color of the image.
+     *
      * @param array $backgroundColor
+     * @return $this
      */
     public function setBackgroundColor($backgroundColor)
     {
@@ -388,6 +363,8 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
         }
 
         $this->_backgroundColor = $backgroundColor;
+
+        return $this;
     }
 
     /**
@@ -449,6 +426,8 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
 
         $_image = new Varien_Image($this->getFilePath());
 
+        $mime = $_image->getMimeType();
+
         if ($this->getKeepAspectRatio()) {
             $_image->keepAspectRatio($this->getKeepAspectRatio());
         }
@@ -475,7 +454,10 @@ class Studioforty9_Gallery_Helper_Image extends Mage_Core_Helper_Abstract
         if ($this->_scheduleResize) {
             $_image->resize($this->getWidth(), $this->getHeight());
         } else {
-            $_image->crop($this->_crop['top'], $this->_crop['left'], $this->_crop['right'], $this->_crop['bottom']);
+            $_image->crop(
+                $this->_crop['top'], $this->_crop['left'],
+                $this->_crop['right'], $this->_crop['bottom']
+            );
         }
 
         try {
